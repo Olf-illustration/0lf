@@ -1,0 +1,192 @@
+:root {
+    --black: #000000;
+    --white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Tiny custom digital crosshair cursor */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><line x1="7.5" y1="0" x2="7.5" y2="15" stroke="black" stroke-width="1"/><line x1="0" y1="7.5" x2="15" y2="7.5" stroke="black" stroke-width="1"/></svg>') 7.5 7.5, crosshair !important;
+}
+
+html, body {
+    width: 100vw;
+    height: 100dvh;
+    overflow: hidden;
+    font-family: 'JetBrains Mono', monospace;
+    background-color: var(--white);
+    color: var(--black);
+    /* Disable text selection for pure friction */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.bg-white { background-color: var(--white); }
+.bg-black { background-color: var(--black); }
+.color-white { color: var(--white); }
+.color-black { color: var(--black); }
+.border-white { border: 1px solid var(--white); }
+.border-black { border: 1px solid var(--black); }
+
+/* Stage 3: Surveillance Layer */
+#surveillance-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+
+
+.monolith {
+    width: 40vw;
+    height: 70vh;
+    background-color: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.monolith-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-align: center;
+    opacity: 0; /* Hidden on first load */
+    pointer-events: none;
+}
+
+.monolith-line-1 {
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.monolith-line-2 {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+/* Stage 2 & 4: Labyrinth */
+#labyrinth {
+    display: flex;
+    width: 100vw;
+    height: 100dvh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: auto; /* No smooth scroll */
+}
+
+.gallery-section {
+    flex: 0 0 100vw;
+    height: 100dvh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+}
+
+.artwork-container {
+    width: 85vw;
+    height: 85dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.artwork-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    /* Force le fond gris/blanc cassé à devenir 100% blanc, et l'encre 100% noire */
+    filter: grayscale(100%) brightness(110%) contrast(200%);
+}
+
+/* UI Metadata */
+.metadata {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    line-height: 1;
+    padding: 0; /* Raw */
+}
+
+/* Stage 4: Archive / Form */
+.form-container {
+    width: 400px;
+    max-width: 90vw;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.brutalist-input {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--white);
+    color: var(--white);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    padding: 10px 0; /* Minimal padding for text visibility, but strictly raw */
+    text-indent: 10px;
+    outline: none;
+    border-radius: 0;
+}
+
+.brutalist-input::placeholder {
+    color: var(--white);
+    opacity: 0.5;
+}
+
+.brutalist-textarea {
+    height: 150px;
+    resize: none;
+}
+
+.brutalist-button {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--white);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    padding: 15px 0;
+    cursor: inherit;
+    text-align: center;
+}
+
+.brutalist-button:hover {
+    background: var(--white);
+    color: var(--black);
+}
+
+.monogram {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    border: 1px solid var(--white);
+    padding: 5px;
+}
