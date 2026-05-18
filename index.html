@@ -139,7 +139,7 @@
             box-sizing: border-box;
             padding: 40px;
         ">
-            <form action="mailto:olf.illustration@gmail.com?subject=ID_OLF_PROTOCOL_MESSAGE" method="POST" enctype="text/plain" style="
+            <form id="contact-form" action="https://formspree.io/f/xpqnzydr" method="POST" style="
                 width: 100%; 
                 max-width: 500px; 
                 display: flex; 
@@ -148,7 +148,7 @@
             ">
                 <div style="display: flex; flex-direction: column; gap: 10px;">
                     <label style="font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; color: #666666;">[INPUT: IDENTITY]</label>
-                    <input type="text" name="IDENTITY" required style="
+                    <input type="text" name="name" required style="
                         background: transparent; 
                         border: none; 
                         border-bottom: 1px solid #ffffff; 
@@ -162,7 +162,7 @@
 
                 <div style="display: flex; flex-direction: column; gap: 10px;">
                     <label style="font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; color: #666666;">[INPUT: EMAIL_ADDRESS]</label>
-                    <input type="email" name="EMAIL" required style="
+                    <input type="email" name="email" required style="
                         background: transparent; 
                         border: none; 
                         border-bottom: 1px solid #ffffff; 
@@ -176,7 +176,7 @@
 
                 <div style="display: flex; flex-direction: column; gap: 10px;">
                     <label style="font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; color: #666666;">[INPUT: MESSAGE]</label>
-                    <textarea name="MESSAGE" rows="4" required style="
+                    <textarea name="message" rows="4" required style="
                         background: transparent; 
                         border: 1px solid #ffffff; 
                         color: #ffffff; 
@@ -188,7 +188,7 @@
                     "></textarea>
                 </div>
 
-                <button type="submit" style="
+                <button id="submit-btn" type="submit" style="
                     background: #ffffff; 
                     color: #000000; 
                     border: none; 
@@ -202,6 +202,8 @@
                 " onmouseover="this.style.background='#666666'; this.style.color='#ffffff';" onmouseout="this.style.background='#ffffff'; this.style.color='#000000';">
                     SUBMIT_PROTOCOL
                 </button>
+                
+                <div id="form-status" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; text-align: center; display: none;"></div>
             </form>
 
             <div style="
@@ -317,7 +319,6 @@
             let points = [];
             const MAX_LIFESPAN = 1500;
 
-            // Enregistrement global des mouvements de souris sur la fenêtre entière
             window.addEventListener('mousemove', (e) => {
                 points.push({
                     x: e.clientX,
@@ -342,9 +343,9 @@
                     ctx.globalAlpha = opacity;
                     
                     if (p.colorMode === 'black') {
-                        ctx.strokeStyle = '#ffffff'; // Hachures blanches sur la section contact
+                        ctx.strokeStyle = '#ffffff'; // Blanc sur fond noir
                     } else {
-                        ctx.strokeStyle = '#000000'; // Hachures noires partout ailleurs
+                        ctx.strokeStyle = '#000000'; // Noir sur fond blanc
                     }
 
                     ctx.beginPath();
@@ -366,6 +367,44 @@
             };
 
             renderCanvas();
+
+            // SÉCURISATION AJAX POUR FORMSPREE (IMMERSION CONTINU)
+            const form = document.getElementById('contact-form');
+            const button = document.getElementById('submit-btn');
+            const status = document.getElementById('form-status');
+
+            if (form) {
+                form.addEventListener('submit', function(ev) {
+                    ev.preventDefault();
+                    button.style.display = 'none'; // Cache le bouton pendant l'envoi
+                    status.style.display = 'block';
+                    status.style.color = '#666666';
+                    status.innerHTML = '[SENDING_PROTOCOL...]';
+
+                    const data = new FormData(form);
+                    fetch(form.action, {
+                        method: form.method,
+                        body: data,
+                        headers: { 'Accept': 'application/json' }
+                    }).then(response => {
+                        if (response.ok) {
+                            status.style.color = '#ffffff';
+                            status.innerHTML = '[SYSTEM: DATA_TRANSMITTED_SUCCESSFULLY]';
+                            form.reset();
+                        } else {
+                            response.json().then(data => {
+                                status.style.color = '#ff0000';
+                                status.innerHTML = '[ERROR: TRANSMISSION_FAILED]';
+                                button.style.display = 'block';
+                            });
+                        }
+                    }).catch(error => {
+                        status.style.color = '#ff0000';
+                        status.innerHTML = '[ERROR: NETWORK_DISRUPTION]';
+                        button.style.display = 'block';
+                    });
+                });
+            }
 
             window.addEventListener('touchmove', (e) => {
                 if(e.cancelable) e.preventDefault();
