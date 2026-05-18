@@ -139,6 +139,20 @@
             box-sizing: border-box;
             padding: 40px;
         ">
+            <div style="
+                font-family: 'JetBrains Mono', monospace; 
+                font-size: 14px; 
+                letter-spacing: 2px; 
+                color: #888888; 
+                text-transform: uppercase; 
+                margin-bottom: 40px; 
+                text-align: center;
+                pointer-events: none;
+                user-select: none;
+            ">
+                [SYSTEM_QUERY: ANY QUESTIONS OR NEEDS?]
+            </div>
+
             <form id="contact-form" action="https://formspree.io/f/xpqnzydr" method="POST" style="
                 width: 100%; 
                 max-width: 500px; 
@@ -335,81 +349,4 @@
 
                 ctx.lineWidth = 1;
 
-                for (let i = 0; i < points.length; i++) {
-                    const p = points[i];
-                    const age = now - p.birth;
-                    const opacity = 1 - (age / MAX_LIFESPAN);
-                    
-                    ctx.globalAlpha = opacity;
-                    
-                    if (p.colorMode === 'black') {
-                        ctx.strokeStyle = '#ffffff'; // Blanc sur fond noir
-                    } else {
-                        ctx.strokeStyle = '#000000'; // Noir sur fond blanc
-                    }
-
-                    ctx.beginPath();
-                    const connectCount = Math.min(3, i);
-                    for (let j = 1; j <= connectCount; j++) {
-                        const target = points[i - j];
-                        if (target && target.colorMode === p.colorMode) {
-                            ctx.moveTo(p.x, p.y);
-                            const jitterX = (Math.random() - 0.5) * 15;
-                            const jitterY = (Math.random() - 0.5) * 15;
-                            ctx.lineTo(target.x + jitterX, target.y + jitterY);
-                        }
-                    }
-                    ctx.stroke();
-                }
-
-                ctx.globalAlpha = 1;
-                requestAnimationFrame(renderCanvas);
-            };
-
-            renderCanvas();
-
-            // SÉCURISATION AJAX POUR FORMSPREE (IMMERSION CONTINU)
-            const form = document.getElementById('contact-form');
-            const button = document.getElementById('submit-btn');
-            const status = document.getElementById('form-status');
-
-            if (form) {
-                form.addEventListener('submit', function(ev) {
-                    ev.preventDefault();
-                    button.style.display = 'none'; // Cache le bouton pendant l'envoi
-                    status.style.display = 'block';
-                    status.style.color = '#666666';
-                    status.innerHTML = '[SENDING_PROTOCOL...]';
-
-                    const data = new FormData(form);
-                    fetch(form.action, {
-                        method: form.method,
-                        body: data,
-                        headers: { 'Accept': 'application/json' }
-                    }).then(response => {
-                        if (response.ok) {
-                            status.style.color = '#ffffff';
-                            status.innerHTML = '[SYSTEM: DATA_TRANSMITTED_SUCCESSFULLY]';
-                            form.reset();
-                        } else {
-                            response.json().then(data => {
-                                status.style.color = '#ff0000';
-                                status.innerHTML = '[ERROR: TRANSMISSION_FAILED]';
-                                button.style.display = 'block';
-                            });
-                        }
-                    }).catch(error => {
-                        status.style.color = '#ff0000';
-                        status.innerHTML = '[ERROR: NETWORK_DISRUPTION]';
-                        button.style.display = 'block';
-                    });
-                });
-            }
-
-            window.addEventListener('touchmove', (e) => {
-                if(e.cancelable) e.preventDefault();
-            }, { passive: false });
-        });
-    </script>
-</body>
-</html>
+                for (let i = 0
