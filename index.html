@@ -9,13 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* CONFIGURATION DE LA NAVIGATION NATIVE DE GAUCHE À DROITE */
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100vh;
-            overflow: hidden; /* Empêche le scroll vertical global */
+            overflow: hidden;
         }
 
         #labyrinth {
@@ -23,29 +22,25 @@
             flex-direction: row;
             width: 100%;
             height: 100vh;
-            overflow-x: auto; /* Active le scroll horizontal natif */
+            overflow-x: auto;
             overflow-y: hidden;
             scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch; /* Scroll fluide sur iOS */
-            
-            /* Optionnel : Aligne proprement chaque section sur l'écran */
+            -webkit-overflow-scrolling: touch;
             scroll-snap-type: x mandatory; 
         }
 
         .gallery-section {
-            flex: 0 0 100vw; /* Chaque section prend exactement la largeur de l'écran */
+            flex: 0 0 100vw;
             height: 100vh;
-            scroll-snap-align: start; /* Cible pour le snapping */
+            scroll-snap-align: start;
             position: relative;
             box-sizing: border-box;
         }
 
-        /* Effet de fondu propre pour l'instruction de scroll */
         #scroll-prompt {
             transition: opacity 0.3s ease;
         }
 
-        /* LAYER SURVEILLANCE FIXED */
         #surveillance-layer {
             position: fixed;
             top: 0;
@@ -86,7 +81,7 @@
                 </div>
             </div>
             <div class="system-instruction" id="scroll-prompt">
-                [ACTION_REQUIRED // SCROLL_TO_NAVIGATE]
+                Faire défiler pour naviguer
             </div>
         </section>
 
@@ -94,70 +89,70 @@
             <div class="artwork-container">
                 <img src="https://i.postimg.cc/1zyZxvKm/Group.jpg" alt="GROUP" class="artwork-image">
             </div>
-            <div class="metadata color-black">ID_OLF_PEOPLE_2026 // 2026</div>
+            <div class="metadata color-black">OLF / PEOPLE / 2026</div>
         </section>
 
         <section class="gallery-section bg-white" data-bg="white">
             <div class="artwork-container">
                 <img src="https://i.postimg.cc/7LqyvKN3/Reflet.png" alt="REFLET" class="artwork-image">
             </div>
-            <div class="metadata color-black">ID_OLF_REFLECTION // 2026</div>
+            <div class="metadata color-black">OLF / REFLECTION / 2026</div>
         </section>
 
         <section class="gallery-section bg-white" data-bg="white">
             <div class="artwork-container">
                 <img src="https://i.postimg.cc/5tfMcsmj/blocked.png" alt="BLOCKED" class="artwork-image">
             </div>
-            <div class="metadata color-black">ID_OLF_BLOCKED // 2026</div>
+            <div class="metadata color-black">OLF / BLOCKED / 2026</div>
         </section>
 
         <section class="gallery-section bg-white" data-bg="white">
             <div class="artwork-container">
                 <img src="https://i.postimg.cc/Dz7KVxcg/debout.jpg" alt="DEBOUT" class="artwork-image">
             </div>
-            <div class="metadata color-black">ID_OLF_STAND // 2026</div>
+            <div class="metadata color-black">OLF / STAND / 2026</div>
         </section>
 
         <section class="gallery-section bg-white" data-bg="white">
             <div class="artwork-container">
                 <img src="https://i.postimg.cc/QMjrLfqt/eyes-of-the-city-olf.png" alt="EYES OF THE CITY" class="artwork-image">
             </div>
-            <div class="metadata color-black">ID_OLF_EYES_OF_THE_CITY // 2026</div>
+            <div class="metadata color-black">OLF / EYES OF THE CITY / 2026</div>
         </section>
 
         <section class="gallery-section bg-white" data-bg="white">
             <div class="artwork-container">
                 <img src="https://i.postimg.cc/zfpYqTdK/la-pelote.jpg" alt="LA PELOTE" class="artwork-image">
             </div>
-            <div class="metadata color-black">ID_OLF_ENTROPY // 2026</div>
+            <div class="metadata color-black">OLF / ENTROPY / 2026</div>
         </section>
 
         <section class="gallery-section bg-white" data-bg="white">
             <div class="artwork-container">
                 <img src="https://i.postimg.cc/3w3HMtZG/the-door.jpg" alt="THE DOOR" class="artwork-image">
             </div>
-            <div class="metadata color-black">ID_OLF_THE_DOORS_OF_PERCEPTION // 2026</div>
+            <div class="metadata color-black">OLF / THE DOORS OF PERCEPTION / 2026</div>
         </section>
 
         <section class="gallery-section bg-white" data-bg="white">
             <div class="artwork-container">
                 <img src="https://i.postimg.cc/NMMqFLSq/the-reach.jpg" alt="THE REACH" class="artwork-image">
             </div>
-            <div class="metadata color-black">ID_OLF_THE_REACH // 2026</div>
+            <div class="metadata color-black">OLF / THE REACH / 2026</div>
         </section>
 
         <section class="gallery-section bg-white" data-bg="white">
             <div class="artwork-container">
                 <img src="https://i.postimg.cc/nzzbrMgf/under-the-bridge-signe.jpg" alt="UNDER THE BRIDGE" class="artwork-image">
             </div>
-            <div class="metadata color-black">ID_OLF_UNDER_THE_BRIDGE // 2026</div>
+            <div class="metadata color-black">OLF / UNDER THE BRIDGE / 2026</div>
         </section>
 
         <section class="gallery-section bg-white" data-bg="white">
             <div class="artwork-container">
                 <img src="https://i.postimg.cc/PqKnd16m/walkin-on-the-right-side.png" alt="WALKIN ON THE RIGHT SIDE" class="artwork-image">
             </div>
-            <div class="metadata color-black">ID_OLF_WALKIN_ON_THE_WILD_SIDE // 2026</div>
+            <div class="metadata color-black">OLF / WALKIN ON THE WILD SIDE / 2026</div>
         </section>
 
         <section id="archive-contact" class="gallery-section" style="
@@ -180,7 +175,7 @@
                 pointer-events: none;
                 user-select: none;
             ">
-                [SYSTEM_QUERY: ANY QUESTIONS OR NEEDS?]
+                Une question ou un projet ?
             </div>
 
             <form id="contact-form" action="https://formspree.io/f/xpqnzydr" method="POST" style="
@@ -191,7 +186,7 @@
                 gap: 30px;
             ">
                 <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <label style="font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; color: #666666;">[INPUT: IDENTITY]</label>
+                    <label style="font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; color: #666666;">Nom / Identité</label>
                     <input type="text" name="name" required style="
                         background: transparent; 
                         border: none; 
@@ -205,7 +200,7 @@
                 </div>
 
                 <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <label style="font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; color: #666666;">[INPUT: EMAIL_ADDRESS]</label>
+                    <label style="font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; color: #666666;">Adresse Email</label>
                     <input type="email" name="email" required style="
                         background: transparent; 
                         border: none; 
@@ -219,7 +214,7 @@
                 </div>
 
                 <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <label style="font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; color: #666666;">[INPUT: MESSAGE]</label>
+                    <label style="font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; color: #666666;">Message</label>
                     <textarea name="message" rows="4" required style="
                         background: transparent; 
                         border: 1px solid #ffffff; 
@@ -244,7 +239,7 @@
                     cursor: crosshair;
                     transition: background 0.1s;
                 " onmouseover="this.style.background='#666666'; this.style.color='#ffffff';" onmouseout="this.style.background='#ffffff'; this.style.color='#000000';">
-                    SUBMIT_PROTOCOL
+                    Envoyer le message
                 </button>
                 
                 <div id="form-status" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; text-align: center; display: none;"></div>
@@ -275,14 +270,12 @@
             const scrollPrompt = document.getElementById('scroll-prompt');
             let hasLeftHome = false;
 
-            // Clic sur le monolithe d'accueil -> fait défiler d'un écran vers la droite
             if (monolith) {
                 monolith.addEventListener('click', () => {
                     labyrinth.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
                 });
             }
 
-            // Gestion propre des arrière-plans et de l'affichage du prompt au scroll via IntersectionObserver
             let currentBackground = 'white';
             const archiveSection = document.getElementById('archive-contact');
             
@@ -307,7 +300,7 @@
                     }
                 });
             }, { 
-                root: labyrinth, // Crucial : l'observation se fait par rapport au conteneur qui scroll !
+                root: labyrinth,
                 threshold: [0, 0.3, 0.5, 1] 
             });
             
@@ -377,7 +370,7 @@
 
             renderCanvas();
 
-            /* --- FORMSPREE AJAX --- */
+            /* --- FORMSPREE AJAX CONVERTRI EN MESSAGES CLAIRS --- */
             const form = document.getElementById('contact-form');
             const button = document.getElementById('submit-btn');
             const status = document.getElementById('form-status');
@@ -388,7 +381,7 @@
                     button.style.display = 'none';
                     status.style.display = 'block';
                     status.style.color = '#666666';
-                    status.innerHTML = '[SENDING_PROTOCOL...]';
+                    status.innerHTML = 'Envoi en cours...';
 
                     const data = new FormData(form);
                     fetch(form.action, {
@@ -398,16 +391,16 @@
                     }).then(response => {
                         if (response.ok) {
                             status.style.color = '#ffffff';
-                            status.innerHTML = '[SYSTEM: DATA_TRANSMITTED_SUCCESSFULLY]';
+                            status.innerHTML = 'Votre message a bien été envoyé.';
                             form.reset();
                         } else {
                             status.style.color = '#ff0000';
-                            status.innerHTML = '[ERROR: TRANSMISSION_FAILED]';
+                            status.innerHTML = 'Une erreur est survenue lors de l\'envoi.';
                             button.style.display = 'block';
                         }
                     }).catch(error => {
                         status.style.color = '#ff0000';
-                        status.innerHTML = '[ERROR: NETWORK_DISRUPTION]';
+                        status.innerHTML = 'Erreur réseau, veuillez réessayer.';
                         button.style.display = 'block';
                     });
                 });
