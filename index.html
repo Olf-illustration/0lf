@@ -17,7 +17,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* Tiny custom digital crosshair cursor */
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"><line x1="7.5" y1="0" x2="7.5" y2="15" stroke="black" stroke-width="1"/><line x1="0" y1="7.5" x2="15" y2="7.5" stroke="black" stroke-width="1"/></svg>') 7.5 7.5, crosshair !important;
         }
 
@@ -28,7 +27,6 @@
             font-family: 'JetBrains Mono', monospace;
             background-color: var(--white);
             color: var(--black);
-            /* Disable text selection for pure friction */
             user-select: none;
             -webkit-user-select: none;
         }
@@ -40,7 +38,6 @@
         .border-white { border: 1px solid var(--white); }
         .border-black { border: 1px solid var(--black); }
 
-        /* Stage 3: Surveillance Layer */
         #surveillance-layer {
             position: fixed;
             top: 0;
@@ -51,45 +48,25 @@
             z-index: 9999;
         }
 
-        /* CORRECTION : Carré parfait sur mobile et dimensions adaptatives */
-        .monolith {
-            width: 80vw;
-            max-width: 400px;
-            aspect-ratio: 1 / 1;
-            background-color: var(--black);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .monolith-text {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            text-align: center;
-            opacity: 0; /* Géré par le script au chargement */
-            pointer-events: none;
-        }
-
-        .monolith-line-1 {
-            font-size: 24px;
+        /* NOUVEAU LOGO ACCUEIL : Style identique au monogramme du contact mais en noir */
+        .monolith-logo {
+            font-size: 18px;
             font-weight: 700;
-            text-transform: uppercase;
             line-height: 1;
-            margin-bottom: 5px;
+            border: 2px solid var(--black);
+            padding: 12px 18px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            text-align: center;
+            opacity: 1;
+            transition: background-color 0.2s, color 0.2s;
         }
 
-        .monolith-line-2 {
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 1;
+        .monolith-logo:hover {
+            background-color: var(--black);
+            color: var(--white);
         }
 
-        /* Stage 2 & 4: Labyrinth */
         #labyrinth {
             display: flex;
             width: 100vw;
@@ -97,7 +74,7 @@
             overflow-x: auto;
             overflow-y: hidden;
             scroll-snap-type: x mandatory;
-            scroll-behavior: auto; /* Défilement natif sans friction forcée */
+            scroll-behavior: auto;
             -webkit-overflow-scrolling: touch;
         }
 
@@ -127,7 +104,6 @@
             filter: grayscale(100%) brightness(110%) contrast(200%);
         }
 
-        /* UI Metadata */
         .metadata {
             position: absolute;
             bottom: 20px;
@@ -137,6 +113,24 @@
             letter-spacing: 0px;
             line-height: 1;
             padding: 0;
+        }
+
+        /* LIEN INSTAGRAM SUR LA HOME */
+        .instagram-link {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 700;
+            z-index: 10;
+        }
+        
+        .instagram-link:hover {
+            text-decoration: underline;
         }
 
         .system-instruction {
@@ -155,7 +149,6 @@
             transition: opacity 0.3s ease;
         }
 
-        /* Stage 4: Archive / Form */
         .form-container {
             width: 400px;
             max-width: 90vw;
@@ -236,12 +229,15 @@
     <main id="labyrinth">
         
         <section class="gallery-section bg-white" id="threshold" data-bg="white">
-            <div class="monolith">
-                <div class="monolith-text" id="monolith-text">
-                    <div class="monolith-line-1">OLF</div>
-                    <div class="monolith-line-2">Entropy in progress</div>
-                </div>
+            
+            <div class="monolith-logo" id="monolith-trigger">
+                OLF
             </div>
+
+            <a href="https://www.instagram.com/olf.illustration/" target="_blank" rel="noopener noreferrer" class="instagram-link">
+                Instagram ↗
+            </a>
+
             <div class="system-instruction" id="scroll-prompt">
                 Faire défiler pour naviguer
             </div>
@@ -351,24 +347,17 @@
         document.addEventListener('DOMContentLoaded', () => {
             const labyrinth = document.getElementById('labyrinth');
             const threshold = document.getElementById('threshold');
-            const monolith = document.querySelector('.monolith');
-            const monolithText = document.getElementById('monolith-text');
+            const monolithTrigger = document.getElementById('monolith-trigger');
             const scrollPrompt = document.getElementById('scroll-prompt');
             let hasLeftHome = false;
 
-            // Rendre le texte visible après l'initialisation
-            if (monolithText) {
-                monolithText.style.opacity = '1';
-            }
-
-            // Déplacement au clic sur l'accueil
-            if (monolith) {
-                monolith.addEventListener('click', () => {
+            // Le clic sur le nouveau logo déclenche toujours la transition vers la galerie
+            if (monolithTrigger) {
+                monolithTrigger.addEventListener('click', () => {
                     labyrinth.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
                 });
             }
 
-            // Détection du fond actif et affichage du prompt
             let currentBackground = 'white';
             const archiveSection = document.getElementById('archive-contact');
             
