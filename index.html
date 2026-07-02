@@ -48,14 +48,22 @@
             z-index: 9999;
         }
 
-        /* NOUVEAU LOGO ACCUEIL : Style identique au monogramme du contact mais en noir */
+        /* BLOC CENTRAL POUR ALIGNER LE LOGO ET INSTAGRAM */
+        .home-center-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px; /* Espace entre le logo et le lien instagram */
+        }
+
+        /* LOGO AGRANDI */
         .monolith-logo {
-            font-size: 18px;
+            font-size: 24px; /* Agrandissement du texte */
             font-weight: 700;
             line-height: 1;
             border: 2px solid var(--black);
-            padding: 12px 18px;
-            letter-spacing: 2px;
+            padding: 16px 24px; /* Padding augmenté pour équilibrer la taille */
+            letter-spacing: 3px;
             cursor: pointer;
             text-align: center;
             opacity: 1;
@@ -65,6 +73,22 @@
         .monolith-logo:hover {
             background-color: var(--black);
             color: var(--white);
+        }
+
+        /* LIEN INSTAGRAM CENTRÉ EN DESSOUS */
+        .instagram-link {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 700;
+            transition: opacity 0.2s;
+        }
+        
+        .instagram-link:hover {
+            text-decoration: underline;
+            opacity: 0.7;
         }
 
         #labyrinth {
@@ -113,24 +137,6 @@
             letter-spacing: 0px;
             line-height: 1;
             padding: 0;
-        }
-
-        /* LIEN INSTAGRAM SUR LA HOME */
-        .instagram-link {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-decoration: none;
-            color: var(--black);
-            font-weight: 700;
-            z-index: 10;
-        }
-        
-        .instagram-link:hover {
-            text-decoration: underline;
         }
 
         .system-instruction {
@@ -228,21 +234,25 @@
 
     <main id="labyrinth">
         
+        <!-- PAGE D'ACCUEIL -->
         <section class="gallery-section bg-white" id="threshold" data-bg="white">
             
-            <div class="monolith-logo" id="monolith-trigger">
-                OLF
+            <!-- Conteneur vertical centré -->
+            <div class="home-center-block">
+                <div class="monolith-logo" id="monolith-trigger">
+                    OLF
+                </div>
+                <a href="https://www.instagram.com/olf.illustration/" target="_blank" rel="noopener noreferrer" class="instagram-link">
+                    Instagram ↗
+                </a>
             </div>
-
-            <a href="https://www.instagram.com/olf.illustration/" target="_blank" rel="noopener noreferrer" class="instagram-link">
-                Instagram ↗
-            </a>
 
             <div class="system-instruction" id="scroll-prompt">
                 Faire défiler pour naviguer
             </div>
         </section>
 
+        <!-- GALERIE -->
         <section class="gallery-section bg-white" data-bg="white">
             <div class="artwork-container">
                 <img src="https://i.postimg.cc/1zyZxvKm/Group.jpg" alt="GROUP" class="artwork-image">
@@ -313,6 +323,7 @@
             <div class="metadata color-black">OLF / WALKIN ON THE WILD SIDE / 2026</div>
         </section>
 
+        <!-- FORMULAIRE CONTACT -->
         <section id="archive-contact" class="gallery-section bg-black">
             <div class="form-container">
                 <div style="font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 2px; color: #888888; text-transform: uppercase; margin-bottom: 30px; text-align: center; pointer-events: none; user-select: none;">
@@ -351,7 +362,6 @@
             const scrollPrompt = document.getElementById('scroll-prompt');
             let hasLeftHome = false;
 
-            // Le clic sur le nouveau logo déclenche toujours la transition vers la galerie
             if (monolithTrigger) {
                 monolithTrigger.addEventListener('click', () => {
                     labyrinth.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
